@@ -1,0 +1,18 @@
+# Infected config file, change chances for an area to be infected by mob spawn.
+# Formatted: 5 as in 1/5
+server:
+  infectionRate:
+    badlands: 10
+    badlands_plateau: 10
+    bamboo_jungle: 10
+    birch_forest_hills: 10
+    desert: 20
+    dark_forest: 50
+    forest: 10
+    jungle: 10
+    mountains: 30
+    nether_wastes: 5
+    swamp: 5
+    plains: 10
+    taiga: 10
+    the_end: 5
