@@ -1,6 +1,7 @@
 package org.square.plugins.infected.descriptions.diseaseTypes;
 
 import org.bukkit.block.Biome;
+import org.bukkit.event.entity.EntityDeathEvent;
 
 public class disease {
     private String name;
@@ -15,4 +16,6 @@ public class disease {
     public String getFavouriteBiome() {
         return favouriteBiome.toString();
     }
+    public void onEntityDeath(EntityDeathEvent e) {}
+
 }
