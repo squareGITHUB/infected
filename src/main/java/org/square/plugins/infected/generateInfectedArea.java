@@ -10,6 +10,7 @@ public class generateInfectedArea {
         String string = String.format("{}, {}, {}", point.getBlockX(), point.getBlockZ(), point.getWorld());
         plugin.infectedChunks.set("infectedArea." + string + ".age", point.getWorld().getFullTime());
         plugin.infectedChunks.save();
+        describeInfectedArea.describeInfectedArea(string, point);
     }
 
     public static Location findLocation(Player player) {
