@@ -2,7 +2,8 @@ package org.square.plugins.infected.descriptions.diseaseTypes;
 
 public enum diseaseTypes {
     VIRUS(Virus.class),
-    BACTERIA(Bacteria.class);
+    BACTERIA(Bacteria.class),
+    PARASITE(Parasite.class);
 
     private final Class<? extends disease> clazz;
 

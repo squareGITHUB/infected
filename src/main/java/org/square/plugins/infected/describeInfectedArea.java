@@ -2,6 +2,7 @@ package org.square.plugins.infected;
 
 import org.bukkit.Location;
 import org.bukkit.block.Biome;
+import org.square.plugins.infected.descriptions.diseaseTypes.Virus;
 import org.square.plugins.infected.descriptions.diseaseTypes.disease;
 import org.square.plugins.infected.descriptions.diseaseTypes.diseaseTypes;
 import org.square.plugins.infected.utils.Log;
@@ -29,6 +30,12 @@ public class describeInfectedArea {
         } else {
             String disease = favouriteDisease;
             plugin.infectedChunks.set("infectedArea." + index.toString() + ".type", disease);
+            try {
+                Integer transmission = diseaseTypes.VIRUS.getDisease().newInstance().getTransmission();
+                plugin.infectedChunks.set("infectedArea." + index.toString() + ".transmission", transmission);
+            } catch (Exception e) {
+                return;
+            }
         }
     }
 }

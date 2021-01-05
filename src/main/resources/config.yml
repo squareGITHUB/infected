@@ -2,20 +2,21 @@
 # Formatted: 5 as in 1/5
 server:
   infectionRate:
-    badlands: 10
-    badlands_plateau: 10
-    bamboo_jungle: 10
-    birch_forest_hills: 10
-    desert: 20
-    dark_forest: 50
-    forest: 10
-    jungle: 10
-    mountains: 30
-    nether_wastes: 5
-    swamp: 5
-    plains: 10
-    taiga: 10
-    the_end: 5
+    BADLANDS: 10
+    BADLANDS_PLATEAU: 10
+    BAMBOO_JUNGLE: 10
+    BIRCH_FOREST: 10
+    DESERT: 20
+    DARK_FOREST: 50
+    FOREST: 10
+    JUNGLE: 10
+    MOUNTAINS: 30
+    NETHER_WASTES: 5
+    SWAMP: 5
+    PLAINS: 10
+    TAIGA: 10
+    THE_END: 5
+    MUSHROOM_FIELDS: 2
 
 # DO NOT TOUCH
 globalInfectionIndex: 0

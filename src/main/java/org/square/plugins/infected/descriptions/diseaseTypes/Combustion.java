@@ -9,11 +9,11 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.square.plugins.infected.Infected;
 
-public class Virus extends disease {
+public class Combustion extends disease {
     private static Infected plugin = Infected.getPlugin();
 
-    public Virus() {
-        super("Virus", 3, Biome.PLAINS);
+    public Combustion() {
+        super("Combustion", 1, Biome.NETHER_WASTES);
     }
     @Override
     public void onPlayerInteract(PlayerInteractEvent e) {
@@ -25,8 +25,8 @@ public class Virus extends disease {
                     for (String line : meta.getLore()) {
                         if(line.trim().contains("DiseaseIndex: ")) {
                             if(plugin.infectedChunks.getString("infectedArea." + line.replace("DiseaseIndex: ", "") + ".type") == "Virus") {
-                                e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 99999, 1));
-                                e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.POISON, 999999, 1));
+                                e.getPlayer().setFireTicks(999999);
+                                e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 999999, 1));
                             }
                         }
                     }

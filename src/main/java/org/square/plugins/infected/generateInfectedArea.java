@@ -20,6 +20,10 @@ public class generateInfectedArea {
     public static void generateNewChunk(Location location) {
         double buffer = Math.random() * (200 - 100 + 1) + 100;
         Location newLocation = location.add(buffer, 0, buffer);
+        while (infectedItems.isLocationInInfectedArea(newLocation, "") == -1) {
+            buffer = Math.random() * (200 - 100 + 1) + 100;
+            newLocation = location.add(buffer, 0, buffer);
+        }
         storePoint(newLocation);
     }
 
