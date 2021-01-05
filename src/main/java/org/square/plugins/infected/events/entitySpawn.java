@@ -17,30 +17,26 @@ public class entitySpawn implements Listener {
         Location location = event.getLocation();
         Entity entity = event.getEntity();
         Integer index = infectedItems.locationToIndex(location);
-
+        Log.info("a");
         if (index != -1) {
             return;
         }
-        try {
-            if (!plugin.config.contains("server.InfectionRate." + location.getBlock().getBiome().toString())) {
-                int infectionRate = 10;
-                if (Math.floor(Math.random() * (infectionRate+1)) == 1) {
-                    generateInfectedArea.generateNewChunk(location);
-                    Log.info("Created a new infection point! (not defined in config)");
-                }
-            } else {
-                int infectionRate = plugin.config.getInt("server.InfectionRate" + location.getBlock().getBiome().toString());
-                if (Math.floor(Math.random() * (infectionRate+1)) == 1) {
-                    generateInfectedArea.generateNewChunk(location);
-                    Log.info("Created a new infection point!");
-                }
-            }
-
-        } catch (Exception e) {
+        Log.info("server.InfectionRate." + location.getBlock().getBiome().toString());
+        if (!plugin.config.isSet("server.InfectionRate." + location.getBlock().getBiome().toString())) {
+            Log.info("c");
             int infectionRate = 10;
             if (Math.floor(Math.random() * (infectionRate+1)) == 1) {
+                Log.info("d");
                 generateInfectedArea.generateNewChunk(location);
                 Log.info("Created a new infection point! (not defined in config)");
+            }
+        } else {
+            Log.info("c2");
+            int infectionRate = plugin.config.getInt("server.InfectionRate" + location.getBlock().getBiome().toString());
+            if (Math.floor(Math.random() * (infectionRate+1)) == 1) {
+                Log.info("d2");
+                generateInfectedArea.generateNewChunk(location);
+                Log.info("Created a new infection point!");
             }
         }
     }
