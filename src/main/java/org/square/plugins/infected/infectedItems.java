@@ -4,30 +4,23 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.meta.ItemMeta;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
 
 
 public class infectedItems {
     private static Infected plugin = Infected.getPlugin();
 
-    public static Location stringToLocation(String str){
-        String str2loc[]=str.split("\\:");
-        Location loc = new Location(Bukkit.getServer().getWorld(str2loc[0]),0,0,0);
-        loc.setX(Double.parseDouble(str2loc[1]));
-        loc.setY(Double.parseDouble(str2loc[2]));
-        loc.setZ(Double.parseDouble(str2loc[3]));
-        return loc;
-    }
-
-    public static boolean isPlayerInInfectedArea (Player player) {
-        List<String> allCoordinates = plugin.infectedChunks.getStringList("infectedArea");
-        for (String coordinate : allCoordinates) {
-            Location location = stringToLocation(coordinate);
-            // if (!player.getLocation().distanceSquared(location)); need to fix this
+    public static String isPlayerInInfectedArea (Location location, String diseaseType) {
+        if (plugin.config.getInt("globalInfectionIndex") == 0) return "null";
+        for (int i = 0; i < (plugin.config.getInt("globalInfectionIndex") + 1); i++) {
+            Location location2 = new Location(Bukkit.getWorld(plugin.infectedChunks.getString("infectedArea." + i + ".location.world")), plugin.infectedChunks.getInt("infectedArea." + i + ".location.x"), 0, plugin.infectedChunks.getInt("infectedArea." + i + ".location.z"));
+            if (location.distance(location2) <= 20) {
+                if (plugin.infectedChunks.getString("infectedArea." + i + ".type") == diseaseType || diseaseType == "") {
+                    return String.valueOf(i);
+                }
+            }
         }
-        return true;
+        return "null";
     }
     public static void infectItem (Player player, String disease) {
         if (player.getItemInHand().getType() == Material.AIR) {

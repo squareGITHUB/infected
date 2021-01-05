@@ -21,14 +21,14 @@ public class describeInfectedArea {
         }
         return "none";
     }
-    public static void describeInfectedArea(Location location) {
+    public static void describeInfectedArea(Location location, Integer index) {
         Biome biome = location.getBlock().getBiome();
         String favouriteDisease = findFavouriteDisease(biome);
         if (favouriteDisease == "none") {
-            plugin.infectedChunks.set("infectedArea." + location.toString() + ".type", "Bacteria");
+            plugin.infectedChunks.set("infectedArea." + index.toString() + ".type", "Bacteria");
         } else {
             String disease = favouriteDisease;
-            plugin.infectedChunks.set("infectedArea." + location.toString() + ".type", disease);
+            plugin.infectedChunks.set("infectedArea." + index.toString() + ".type", disease);
         }
     }
 }

@@ -7,14 +7,14 @@ public class generateInfectedArea {
     private static Infected plugin = Infected.getPlugin();
 
     private static void storePoint(Location point) {
-        String string = point.toString();
-        Integer index = 1;
-        while (!plugin.infectedChunks.contains("index: " + index)) {
-            index = index + 1;
-        }
-        plugin.infectedChunks.set("infectedArea." + index + "." + string + ".age", point.getWorld().getFullTime());
+        Integer globalInfectionIndex = plugin.config.getInt("globalInfectionIndex");
+        plugin.infectedChunks.set("infectedArea."  + globalInfectionIndex+1 + ".age", point.getWorld().getFullTime());
+        plugin.infectedChunks.set("infectedArea."  + globalInfectionIndex+1 + ".location.world", point.getWorld().toString());
+        plugin.infectedChunks.set("infectedArea."  + globalInfectionIndex+1 + ".location.x", point.getX());
+        plugin.infectedChunks.set("infectedArea."  + globalInfectionIndex+1 + ".location.z", point.getZ());
         plugin.infectedChunks.save();
-        describeInfectedArea.describeInfectedArea(point);
+        plugin.config.set("globalInfectionIndex", globalInfectionIndex + 1);
+        describeInfectedArea.describeInfectedArea(point, globalInfectionIndex+1);
     }
 
     public static void generateNewChunk(Location location) {

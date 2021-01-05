@@ -25,7 +25,7 @@ public class entitySpawn implements Listener {
         }
         int infectionRate = plugin.config.getInt("server.InfectionRate." + location.getBlock().getBiome());
 
-        if (Math.random() * (infectionRate - 1 + 1) + 1 == 1) {
+        if (Math.floor(Math.random() * (infectionRate+1)) == 1) {
             generateInfectedArea.generateNewChunk(location);
             Log.info("Created a new infection point!");
         }

@@ -1,4 +1,4 @@
-# Infected config file, change chances for an area to be infected by mob spawn.
+# Chances for an area to be infected
 # Formatted: 5 as in 1/5
 server:
   infectionRate:
@@ -16,3 +16,6 @@ server:
     plains: 10
     taiga: 10
     the_end: 5
+
+# DO NOT TOUCH
+globalInfectionIndex: 0

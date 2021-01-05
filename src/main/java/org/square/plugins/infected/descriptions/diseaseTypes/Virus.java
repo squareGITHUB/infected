@@ -5,6 +5,7 @@ import org.bukkit.block.Biome;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.square.plugins.infected.Infected;
+import org.square.plugins.infected.infectedItems;
 
 import java.util.List;
 
@@ -20,6 +21,8 @@ public class Virus extends disease {
     @Override
     public void onEntityDeath(EntityDeathEvent e) {
         Location location = e.getEntity().getLocation();
-
+        if (infectedItems.isPlayerInInfectedArea(location, "Virus") != "null") {
+            double chance = Math.random() * (5 - 1 + 1) + 1;
+        }
     }
 }
