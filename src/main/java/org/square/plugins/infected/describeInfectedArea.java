@@ -13,7 +13,7 @@ public class describeInfectedArea {
     public static String findFavouriteDisease(Biome biome) {
         for (diseaseTypes type : diseaseTypes.values()) {
             try {
-                if (type.getDisease().newInstance().getFavouriteBiome().toString() == biome.toString()) {
+                if (type.getDisease().newInstance().getFavouriteBiome() == biome.toString().toUpperCase()) {
                     return type.name();
                 }
             } catch (Exception e) {
@@ -21,22 +21,6 @@ public class describeInfectedArea {
             }
         }
         return "none";
-    }
-    public static void describeInfectedArea(Location location, Integer index) {
-        Biome biome = location.getBlock().getBiome();
-        String favouriteDisease = findFavouriteDisease(biome);
-        if (favouriteDisease == "none") {
-            plugin.infectedChunks.set("infectedArea." + index.toString() + ".type", "Bacteria");
-        } else {
-            String disease = favouriteDisease;
-            plugin.infectedChunks.set("infectedArea." + index.toString() + ".type", disease);
-            try {
-                Integer transmission = diseaseTypes.VIRUS.getDisease().newInstance().getTransmission();
-                plugin.infectedChunks.set("infectedArea." + index.toString() + ".transmission", transmission);
-            } catch (Exception e) {
-                return;
-            }
-        }
     }
 }
 

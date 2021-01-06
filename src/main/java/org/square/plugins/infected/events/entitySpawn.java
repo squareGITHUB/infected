@@ -10,31 +10,28 @@ import org.square.plugins.infected.generateInfectedArea;
 import org.square.plugins.infected.infectedItems;
 import org.square.plugins.infected.utils.Log;
 
+import java.util.Locale;
+
 public class entitySpawn implements Listener {
-    private Infected plugin;
+    private static Infected plugin = Infected.getPlugin();
+
     @EventHandler
     public void onEntitySpawn(EntitySpawnEvent event) {
         Location location = event.getLocation();
         Entity entity = event.getEntity();
         Integer index = infectedItems.locationToIndex(location);
-        Log.info("a");
         if (index != -1) {
             return;
         }
-        Log.info("server.InfectionRate." + location.getBlock().getBiome().toString());
-        if (!plugin.config.isSet("server.InfectionRate." + location.getBlock().getBiome().toString())) {
-            Log.info("c");
+        if (!plugin.config.contains("server.infectionRate." + location.getBlock().getBiome().toString().toUpperCase())) {
             int infectionRate = 10;
             if (Math.floor(Math.random() * (infectionRate+1)) == 1) {
-                Log.info("d");
                 generateInfectedArea.generateNewChunk(location);
                 Log.info("Created a new infection point! (not defined in config)");
             }
         } else {
-            Log.info("c2");
-            int infectionRate = plugin.config.getInt("server.InfectionRate" + location.getBlock().getBiome().toString());
+            int infectionRate = plugin.config.getInt("server.infectionRate." + location.getBlock().getBiome().toString());
             if (Math.floor(Math.random() * (infectionRate+1)) == 1) {
-                Log.info("d2");
                 generateInfectedArea.generateNewChunk(location);
                 Log.info("Created a new infection point!");
             }

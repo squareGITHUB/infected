@@ -2,3 +2,6 @@ name: Infected
 version: ${project.version}
 main: org.square.plugins.infected.Infected
 api-version: 1.16
+commands:
+  isPlayerInsideInfectedAreaCommand:
+    aliases: ["ipiiac","insideinfected","infectedarea"]
